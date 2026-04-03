@@ -318,6 +318,14 @@ describe("parseCommandArgs", () => {
 		expect(parseCommandArgs("a\tb\tc")).toEqual(["a", "b", "c"]);
 	});
 
+	test("should handle newlines as separators", () => {
+		expect(parseCommandArgs("a\nb\nc")).toEqual(["a", "b", "c"]);
+	});
+
+	test("should separate quoted first arg from newline-delimited rest args", () => {
+		expect(parseCommandArgs("'last commit'\nadditional context")).toEqual(["last commit", "additional", "context"]);
+	});
+
 	test("should handle quoted empty string", () => {
 		// Note: Empty quotes are skipped by current implementation
 		expect(parseCommandArgs('"" " "')).toEqual([" "]);

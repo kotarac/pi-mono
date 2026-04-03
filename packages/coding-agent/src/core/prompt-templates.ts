@@ -36,7 +36,7 @@ export function parseCommandArgs(argsString: string): string[] {
 			}
 		} else if (char === '"' || char === "'") {
 			inQuote = char;
-		} else if (char === " " || char === "\t") {
+		} else if (char === " " || char === "\t" || char === "\n" || char === "\r") {
 			if (current) {
 				args.push(current);
 				current = "";
